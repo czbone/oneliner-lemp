@@ -1,6 +1,6 @@
 ---
 roles:
-#  - stuvusit.systemd-timesyncd
+  - stuvusit.systemd-timesyncd
   - geerlingguy.docker
 
 collections:

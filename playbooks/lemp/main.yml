@@ -24,7 +24,7 @@
     MARIADB_PASSWORD: '{{ sample_db_password }}'
 
   roles:
-#    - stuvusit.systemd-timesyncd
+    - stuvusit.systemd-timesyncd
     - geerlingguy.docker
 
   tasks:

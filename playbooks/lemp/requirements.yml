@@ -1,6 +1,5 @@
 ---
 roles:
-  #- stuvusit.systemd-timesyncd
   - geerlingguy.ntp
   - geerlingguy.docker
 

@@ -24,7 +24,6 @@
     MARIADB_PASSWORD: '{{ sample_db_password }}'
 
   roles:
-    #- stuvusit.systemd-timesyncd
     - geerlingguy.ntp
     - geerlingguy.docker
 
@@ -34,10 +33,6 @@
         name:
           - zip
           - unzip
-
-    # - name: Set timezone to Asia/Tokyo
-    #   community.general.timezone:
-    #     name: Asia/Tokyo
 
     - name: Create Japanese environment
       import_tasks: ./tasks/japanese.yml

@@ -1,0 +1,31 @@
+FROM php:fpm-alpine
+
+RUN apk add --no-cache bash
+
+# Set time zone
+RUN apk --no-cache add tzdata && \
+    cp /usr/share/zoneinfo/{{ docker_container_timezone }} /etc/localtime && \
+    apk del tzdata
+
+# Install PHP option modules
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN apk add --no-cache freetype-dev libjpeg-turbo-dev libpng-dev libzip-dev zlib-dev
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-install gd \
+    zip \
+    opcache \
+    exif
+
+# Install ImageMagick
+RUN apk add --no-cache imagemagick imagemagick-dev
+RUN apk add --no-cache --virtual build-dependencies gcc make autoconf libc-dev libtool
+ARG IMAGICK_VERSION=3.7.0
+RUN curl -L -o /tmp/imagick.tar.gz https://github.com/Imagick/imagick/archive/refs/tags/${IMAGICK_VERSION}.tar.gz \
+    && tar --strip-components=1 -xf /tmp/imagick.tar.gz \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install \
+    && echo "extension=imagick.so" > /usr/local/etc/php/conf.d/ext-imagick.ini \
+    && rm -rf /tmp/*
+RUN apk del --purge build-dependencies

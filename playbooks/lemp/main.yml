@@ -25,7 +25,7 @@
 
   roles:
     #- stuvusit.systemd-timesyncd
-    #- geerlingguy.ntp
+    - geerlingguy.ntp
     - geerlingguy.docker
 
   tasks:
@@ -35,9 +35,9 @@
           - zip
           - unzip
 
-    - name: Set timezone to Asia/Tokyo
-      community.general.timezone:
-        name: Asia/Tokyo
+    # - name: Set timezone to Asia/Tokyo
+    #   community.general.timezone:
+    #     name: Asia/Tokyo
 
     - name: Create Japanese environment
       import_tasks: ./tasks/japanese.yml

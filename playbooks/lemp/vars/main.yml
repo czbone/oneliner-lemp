@@ -2,9 +2,10 @@
 # Docker host configuration
 #
 # server timezone
-timesync_timezone: Asia/Tokyo
-timesync_ntp_hosts:
-  - ntp.nict.jp
+# timesync_timezone: Asia/Tokyo
+# timesync_ntp_hosts:
+#   - ntp.nict.jp
+ntp_timezone: Asia/Tokyo
 
 #
 # Docker container configuration

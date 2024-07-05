@@ -1,4 +1,6 @@
-- hosts: all
+- hosts: localhost
+  connection: local
+
   vars_files:
     - vars/main.yml
 

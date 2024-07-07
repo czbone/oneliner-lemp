@@ -86,6 +86,7 @@ fi
 filename=${GITHUB_REPO}_${version}.tar.gz
 filepath=${WORK_DIR}/$filename
 
+echo ${version}
 if [ -z ${version} ]; then
     echo "Not found archive with tag."
     exit 1

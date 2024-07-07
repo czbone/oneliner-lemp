@@ -81,18 +81,15 @@ else
     url=`curl -s "https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/tags" | grep "tarball_url" | \
         sed -n '/[ \t]*"tarball_url"/p' | head -n 1 | \
         sed -e 's/[ \t]*".*":[ \t]*"\(.*\)".*/\1/'`
-echo $url
+    if [ -z ${url} ]; then
+        echo "Not found archive with tag."
+        exit 1
+    fi
 echo '-----'
     version=`basename $url | sed -e 's/v\([0-9\.]*\)/\1/'`
 fi
 filename=${GITHUB_REPO}_${version}.tar.gz
 filepath=${WORK_DIR}/$filename
-
-echo ${version}
-if [ -z ${version} ]; then
-    echo "Not found archive with tag."
-    exit 1
-fi
 
 # Set current directory
 mkdir -p ${WORK_DIR}

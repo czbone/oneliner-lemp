@@ -86,6 +86,11 @@ fi
 filename=${GITHUB_REPO}_${version}.tar.gz
 filepath=${WORK_DIR}/$filename
 
+if ! ${version}; then
+    echo "Not found archive with tag."
+    exit 1
+fi
+
 # Set current directory
 mkdir -p ${WORK_DIR}
 cd ${WORK_DIR}

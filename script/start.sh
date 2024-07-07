@@ -85,7 +85,6 @@ else
         echo "Not found archive with tag."
         exit 1
     fi
-echo '-----2'
     version=`basename $url | sed -e 's/v\([0-9\.]*\)/\1/'`
 fi
 filename=${GITHUB_REPO}_${version}.tar.gz

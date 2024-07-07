@@ -81,7 +81,7 @@ else
     url=`curl -s "https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/tags" | grep "tarball_url" | \
         sed -n '/[ \t]*"tarball_url"/p' | head -n 1 | \
         sed -e 's/[ \t]*".*":[ \t]*"\(.*\)".*/\1/'`
-    if [ -z ${url} ]; then
+    if [ "${url}" == '' ]; then
         echo "Not found archive with tag."
         exit 1
     fi
